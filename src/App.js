@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import MenuHide from "./Components/MenuHide/MenuHide";
+import NavbarLay from "./Components/NavBar/Navbar";
+import "remixicon/fonts/remixicon.css";
+import HeroSection from "./Components/HeroSection/HeroSection";
+import AddPlace from "./Components/Modals/AddPlace/AddPlace";
+import Register from "./Components/Register/Register";
 
-function App() {
+const App = () => {
+  const menu_active = useSelector((state) => state.layouts.menu);
+  const user = useSelector((state) => state.user);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {user.loginStatus ? (
+        <>
+          <MenuHide />
+          <main
+            className={`d-flex restContainer ${
+              menu_active ? "show_active" : ""
+            }`}
+          >
+            <NavbarLay />
+            <div className="ground">
+              <div className="title">
+                <h2>
+                  به سیستم مدریت هوشمند <span>EMACO</span> خوش آمدید.
+                </h2>
+              </div>
+              <HeroSection />
+            </div>
+          </main>
+        </>
+      ) : (
+        <Register />
+      )}
+    </>
   );
-}
+};
 
 export default App;

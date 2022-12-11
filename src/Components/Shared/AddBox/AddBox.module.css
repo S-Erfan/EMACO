@@ -1,0 +1,10 @@
+.container {
+    width: 55px;
+    height: 55px;
+    border-radius: 8px;
+    outline: #fff dashed 1px;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    cursor: pointer;
+}

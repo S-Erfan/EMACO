@@ -1,13 +1,105 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --bg-dark: #403d39;
+  --bg-darkGray: #252523;
+  --bg-darkGray2: #2c2c2c;
+  --main-color:  #e3a008;
+  --main-color-glass:  #e3a10866;
+  --gray-color: #808080;
+  --white-color: #fff;
+  --z-index-ground: 1;
+  --zIndex-items: 2;
+
+  /* fontSize */
+  --title-f: 20px;
+  --form-text: 14px;
+  --list-f: 14px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "YekanBakh", Arial, Helvetica, sans-serif !important;
+  background-color: none !important;
+}
+
+.ground-cus {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-image: url("https://fanavaryrayan.ir/back.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(3px)  brightness(60%);
+}
+
+.glass_item {
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6.3px);
+  -webkit-backdrop-filter: blur(6.3px);
+}
+
+
+.show_menu{
+  width: 180px;
+  height: 100vh;
+  position: absolute;
+  background-color: var(--bg-dark);
+  z-index: 3;
+  transform: translateX(100%);
+  transition: all .5s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+
+.act {
+  transform: translateX(0);
+}
+
+.restContainer {
+  width: 100%;
+  transition: all .5s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  position: relative;
+  right: 0;
+  overflow: hidden;
+}
+
+.show_active{
+  width: calc(100% - 180px);
+  right: 180px;
+  z-index: 3;
+}
+
+.show_active .ground {
+  position: fixed;
+  left: 0;
+  width: 30%;
+  transform: translateX(-150%) scale(.9);
+}
+
+.ground{
+  width: 75%;
+  z-index: 3;
+  margin: 0 auto;
+  transition: all .5s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  /* transition: all .8s cubic-bezier(0.895, 0.03, 0.685, 0.22); */
+}
+
+.ground .title {
+  margin: 2rem 1rem;
+  color: #fff;
+}
+.ground .title h2{
+  font-size: 14px;
+}
+
+.ground .title h2 span {
+  color: var(--main-color);
 }
