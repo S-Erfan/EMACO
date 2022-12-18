@@ -43,7 +43,8 @@ export const MainDivForm = styled.form`
 
 export const GroundDevices = styled.div`
   width: 100%;
-  height: 170px;
+  height: 100%;
+  max-height: 370px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,12 +67,13 @@ export const GroundDevices = styled.div`
 export const DeviceCard = styled.div`
   width: 100%;
   height: 100%;
+  max-height: 75px;
   padding: 6px;
   border-radius: 8px;
-  background-color: var(--main-color-glass);
+  background-color: ${props => props.select ? "var(--main-color-glass)" : "var(--bg-darkGray2)" } ;
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: center;
 
   .input_holder {
     width: 75%;
