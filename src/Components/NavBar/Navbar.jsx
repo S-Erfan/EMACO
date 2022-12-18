@@ -8,17 +8,35 @@ import AddPlace from "../Modals/AddPlace/AddPlace";
 import { Button } from "react-bootstrap";
 import BoxPlaceSelect from "../Shared/BoxPlaceSelect/BoxPlaceSelect";
 import { selectTarget } from "../../Redux/placeReducer/placeAction";
+import { useEffect } from "react";
+import useMqttConnection, { createConnection } from "../../mqtt/initMqtt";
+
 
 const NavbarLay = () => {
   const menuActive = useSelector((state) => state.layouts.menu);
+  const allTopic = useSelector(state => state.user.topics);
+  const deviceInfo = useSelector(state => state.user.targetDevice);
   const [modalShow, setModalShow] = useState(false);
   const dispatch = useDispatch();
   const selectedPlaces = useSelector((state) => state.places.slectedPlace);
+
+
+ const [client, payload, connectStatus] = useMqttConnection();
+
 
   const targetHandler = (id) => {
     console.log("bobo", id)
     dispatch(selectTarget(id));
   }
+
+  const [connectionStatus, setConnectionStatus] = React.useState(false);
+  const [messages, setMessages] = React.useState([]);
+
+  useEffect(() => {
+    if(allTopic.length !== 0){
+      console.log(client, payload, connectStatus);
+    }
+  }, [connectStatus])
 
   return (
     <>
@@ -46,8 +64,8 @@ const NavbarLay = () => {
           </svg>
         </span>
         <MyNavBar>
-          {selectedPlaces.map((item) => (
-            <BoxPlaceSelect key={item.id} name={item.name} icon={item.icon} id={item.id} onCilcked={targetHandler} />
+          {allTopic.map((item) => (
+            <BoxPlaceSelect key={item.id} name={item.title} icon={item.icon} id={item.id} onCilcked={targetHandler} />
           ))}
 
           <AddBox onClick={() => setModalShow(!modalShow)} />
